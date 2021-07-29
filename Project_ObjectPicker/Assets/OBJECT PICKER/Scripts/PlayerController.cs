@@ -71,8 +71,11 @@ public class PlayerController : MonoBehaviour
     IEnumerator delayInicio()
     {
         yield return new WaitForSeconds(3);
-        yield return new WaitUntil(() => FadeInOut._instance.isFadeComplete);
-        FadeInOut._instance.Fade();
+        if (FadeInOut._instance != null)
+        {
+            yield return new WaitUntil(() => FadeInOut._instance.isFadeComplete);
+            FadeInOut._instance.Fade();
+        }
         currentState = GameState.PLAY;
         Cursor.lockState = CursorLockMode.Locked;
     }
